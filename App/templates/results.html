@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %}Official BeeSafe App{% endblock %}
+{% block page %}BeeSafe{% endblock %}
+
+{{ super() }}
+
+{% block content %}
+  {% for user in user_list %}
+  <div class="card">
+    <p>Username: {{ user.username }}</p>
+  </div>
+{% endfor %}
+
+<br><br><br>
+<footer>
+</footer>
+{% endblock %}

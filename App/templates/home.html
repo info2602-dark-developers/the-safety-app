@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block title %}Official BeeSafe App{% endblock %}
+{% block page %}BeeSafe{% endblock %}
+
+{{ super() }}
+
+
+{% block content %}
+<script>
+  function lol() {
+  const messages = [
+    
+"Wear your seatbelt: Always wear your seatbelt when driving or riding in a vehicle. It's one of the easiest and most effective ways to protect yourself in case of an accident.",
+    
+"Don't drink and drive: Never drive while under the influence of alcohol or drugs. It's not only illegal, but it's also extremely dangerous.",
+    
+"Keep your eyes on the road: Avoid distracted driving, such as using your phone or eating while driving. Keep your focus on the road and the task at hand.",
+    
+"Follow the speed limit: Stick to the posted speed limit and adjust your speed for road and weather conditions. Speeding increases your risk of a crash and makes it harder to react in time.",
+    
+"Use proper safety gear: Whether you're biking, skateboarding, or participating in any other activity, be sure to wear appropriate safety gear such as a helmet, knee pads, and elbow pads.",
+    
+"Be aware of your surroundings: Stay alert and aware of your surroundings, whether you're walking in a parking lot or hiking in the woods. Know where you are and who is around you.",
+    
+"Report suspicious activity: If you see something suspicious or potentially dangerous, report it to the appropriate authorities. You could prevent a tragedy from occurring.",
+    
+"Keep your home secure: Take steps to make your home as secure as possible, such as locking doors and windows, installing security cameras, and using motion-sensor lights.",
+    
+"Know basic first aid: Learn basic first aid skills, such as CPR and how to treat common injuries. You never know when you might need to use them.",
+    
+"Stay informed: Stay up to date on safety information and emergency alerts in your area. The more informed you are, the better prepared you will be to handle any situation that arises."
+];
+
+
+  
+  const message = messages[Math.floor(Math.random() * messages.length)];
+  console.log(message);
+  document.getElementById("message").innerHTML = message;
+}
+</script>
+<center>
+ <div class="daily-safety-message">
+   <h2 id="message">Daily Safety Messages</h2>
+   <button onclick="lol()">Generate Message</button>
+   <p ></p>
+ </div>
+</center>
+
+
+<br><br><br>
+<footer>
+</footer>
+{% endblock %}
+

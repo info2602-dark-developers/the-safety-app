@@ -3,26 +3,64 @@
   <head>
   
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='main.css') }}"></script>
+    <script src="{{ url_for('static', filename='script.css') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+    <script src="https://kit.fontawesome.com/f42f4f2d2f.js" crossorigin="anonymous"></script>
      <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
     <title>{% block title %}{% endblock %}</title>
 
+<style>
+    footer {
+      text-align: center;
+      padding: 3px;
+      background-color:#5a189a;
+      color: white;
+    }
+  
+</style>
+  </head>
+    
   </head>
   <body>
-    <nav class="purple">
-      <div class="nav-wrapper">
-        <a href="#!" class="brand-logo center">{% block page %}{% endblock %}</a>
-        <div class="nav-wrapper">
-            <ul id="nav-mobile" class="left">
-                <li><a href="/">Home</a></li>
-                <li><a href="/users">Users Jinja</a></li>
-                <li><a href="/static/users">Users JS</a></li>
-            </ul>
+    <nav class="navbar">
+      {% if not current_user.is_authenticated %}
+      <div class="navbar-container">
+        <div class="navbar-item">
+          <a href="/"><i class="fa-solid fa-house"></i></a>
         </div>
+      {% endif %}
+      {% if current_user.is_authenticated %}
+      <div class="navbar-container">
+        <div class="navbar-item">
+          <a href="/home"><i class="fa-solid fa-house"></i></a>
+        </div>
+                <div class="navbar-item">
+                  <div class="search-container">
+                    <form action="/search">
+                      <input type="text" name="username" placeholder="Search...">
+                      <button type="submit" class="flat-button">Go</button>
+                    </form>
+                  </div>
+                </div>
+                <div class="navbar-item">
+                  <form action="{{ url_for('auth_views.logout') }}" method="POST">
+            <button type="submit" class="icon-button">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </button>
+        </form>        
+                </div>
+        {%endif%}
+        {% if not current_user.is_authenticated %}
+          
+        
+          <div class="navbar-item" style="height: 5vh">
+            <a href="https://form.jotform.com/231138526435050"><p>Sign Up</p></a>
+          </div>
+        {% endif %}
       </div>
     </nav>
     
@@ -42,6 +80,20 @@
 
     <div class="container" id="content">{% block content %}{% endblock %}</div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  </body>
+    <script src="https://maps.googleapis.com/maps/api/js?key=4619-4005-2363-6030"></script>
+
+
+
+
+
+    
+ </body>
+    <footer>
+    <div>
+      <ul class="social media">
+        <a href="https://www.facebook.com/people/BeeSafe/100080075097744/"><i class="fa-brands fa-facebook-square"></i></a>
+        <a href="https://www.instagram.com/beesafe_tt/"><i class="fa-brands fa-instagram-square"></i></a>
+       </ul>
+  </div>
+  </footer>
 </html>

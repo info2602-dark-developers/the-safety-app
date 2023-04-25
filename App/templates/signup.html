@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}Official BeeSafe App{% endblock %}
+{% block page %}BeeSafe{% endblock %}
+
+{{ super() }}
+
+
+{% block content %}
+<div id="signupwrapper">
+  <div id="left">
+    <h1 id="signupwrapper-supertext">BeeSafe</h1>
+    <h2 id="signupwrapper-subtext">Trinidad & Tobago</h2>
+  </div>
+  <div id="right">
+    <form id="signupwrapper-form" action="/signup" method="POST">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required><br>
+                
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required><br>
+                
+      <input type="submit" value="Sign up">
+    </form>
+  </div>
+</div>
+{% endblock %}
