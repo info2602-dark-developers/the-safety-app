@@ -9,7 +9,8 @@ from App.controllers import (
     jwt_authenticate, 
     get_all_users,
     get_all_users_json,
-    jwt_required
+    jwt_required,
+    get_user_by_username
 )
 
 user_views = Blueprint('user_views', __name__, template_folder='../templates')
@@ -19,6 +20,29 @@ def get_user_page():
     users = get_all_users()
     return render_template('users.html', users=users)
 
+@user_views.route('/results/<user_list>', methods=['GET'])
+def results_page(user_list):
+    return render_template('results.html', user_list=user_list)
+
+@user_views.route('/search', methods=['GET', 'POST'])
+def user_search():
+    username = request.args.get('username')
+    user_list = []
+    if not username or not username.strip():
+        users = get_all_users()
+        user_list = [user.get_json() for user in users]
+        return redirect(url_for('user_views.results_page', user_list=user_list))
+      
+    users = get_user_by_username(username)
+    if not users:
+        return jsonify({'error': 'No users found with that username.'}), 404
+      
+    return redirect(url_for('user_views.results_page', user_list=users))
+
+
+
+
+  
 @user_views.route('/api/users', methods=['GET'])
 def get_users_action():
     users = get_all_users_json()

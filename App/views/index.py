@@ -13,6 +13,11 @@ def init():
     db.drop_all()
     db.create_all()
     create_user('bob', 'bobpass')
+    create_user('acid', 'bobpass')
+    create_user('casper', 'bobpass')
+    create_user('jerry', 'bobpass')
+    create_user('tom', 'bobpass')
+    create_user('prakash', 'bobpass')
     return jsonify(message='db initialized!')
 
 @index_views.route('/health', methods=['GET'])
