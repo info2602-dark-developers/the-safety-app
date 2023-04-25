@@ -30,4 +30,31 @@ def update_user(id, username):
         db.session.add(user)
         return db.session.commit()
     return None
-    
+
+#friend controllers
+def add_friend(user_id, friend_id):
+    user = User.query.get(user_id)
+    friend = User.query.get(friend_id)
+    if user and friend:
+        user.friends.append(friend)
+        db.session.commit()
+
+def remove_friend(user_id, friend_id):
+    user = User.query.get(user_id)
+    friend = User.query.get(friend_id)
+    if user and friend:
+        user.friends.remove(friend)
+        db.session.commit()
+
+def get_friends(user_id):
+    user = User.query.get(user_id)
+    if user:
+        return user.friends
+    return []
+
+def are_friends(user_id, friend_id):
+    user = User.query.get(user_id)
+    friend = User.query.get(friend_id)
+    if user and friend:
+        return friend in user.friends
+    return False
